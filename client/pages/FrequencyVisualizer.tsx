@@ -44,7 +44,7 @@ export default function FrequencyVisualizer() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-slate-950 via-purple-950 to-slate-950 pt-16">
+    <div className="min-h-screen w-full bg-gradient-to-b from-background via-card to-background pt-16">
       <Navigation />
 
       {/* Header Section */}
@@ -67,8 +67,8 @@ export default function FrequencyVisualizer() {
                 {/* Selected Note Display */}
                 <div>
                   <h3 className="text-white font-semibold mb-4">Selected Note</h3>
-                  <div className="text-center p-8 bg-gradient-to-r from-purple-900/40 to-blue-900/40 rounded-lg border border-purple-500/30">
-                    <div className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 mb-3">
+                  <div className="text-center p-8 bg-gradient-to-r from-background/40 to-background/40 rounded-lg border border-primary/30">
+                    <div className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-muted-foreground to-primary mb-3">
                       {selectedNote.label}
                     </div>
                     <div className="text-xl text-gray-300 mb-2">
@@ -90,8 +90,8 @@ export default function FrequencyVisualizer() {
                         onClick={() => playNote(note)}
                         className={`p-4 rounded-lg font-bold transition-all duration-300 ${
                           selectedNote.label === note.label
-                            ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg shadow-purple-500/50'
-                            : 'bg-purple-900/40 border border-purple-500/30 text-gray-300 hover:border-purple-500/60'
+                            ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/50'
+                            : 'bg-card/40 border border-primary/30 text-gray-300 hover:border-primary/60'
                         }`}
                       >
                         <div className="text-lg">{note.label}</div>
@@ -157,7 +157,7 @@ export default function FrequencyVisualizer() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm text-gray-300">
                 <thead>
-                  <tr className="border-b border-purple-500/30">
+                  <tr className="border-b border-primary/30">
                     <th className="text-left py-2 px-4">Note</th>
                     <th className="text-left py-2 px-4">Swara (Sanskrit)</th>
                     <th className="text-left py-2 px-4">Frequency</th>
@@ -166,7 +166,7 @@ export default function FrequencyVisualizer() {
                 </thead>
                 <tbody>
                   {notes.map((note) => (
-                    <tr key={note.label} className="border-b border-purple-500/20 hover:bg-purple-900/20 transition-colors">
+                    <tr key={note.label} className="border-b border-primary/20 hover:bg-card/20 transition-colors">
                       <td className="py-3 px-4 font-semibold text-white">{note.label}</td>
                       <td className="py-3 px-4">{note.swaraName}</td>
                       <td className="py-3 px-4">{note.frequency} Hz</td>

@@ -51,15 +51,15 @@ const features: FeatureCard[] = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-slate-950 via-purple-950 to-slate-950 pt-16">
+    <div className="min-h-screen w-full bg-gradient-to-b from-background via-card to-background pt-16">
       <Navigation />
 
       {/* Hero Section */}
       <section className="min-h-[calc(100vh-4rem)] flex items-center justify-center relative overflow-hidden px-4">
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-purple-600/20 rounded-full blur-3xl animate-pulse-glow"></div>
-          <div className="absolute bottom-20 right-10 w-72 h-72 bg-blue-600/20 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse-glow"></div>
+          <div className="absolute bottom-20 right-10 w-72 h-72 bg-muted-foreground/20 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1s' }}></div>
         </div>
 
         {/* Content */}
@@ -119,7 +119,7 @@ export default function Home() {
       </section>
 
       {/* Introduction Section */}
-      <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-transparent to-purple-900/10">
+      <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-transparent to-card/10">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">

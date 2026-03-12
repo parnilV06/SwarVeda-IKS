@@ -64,7 +64,7 @@ export default function WaveformVisualizer({
       ref={canvasRef}
       width={400}
       height={height}
-      className="w-full border border-purple-500/30 rounded-lg bg-gradient-to-b from-purple-900/20 to-transparent"
+      className="w-full border border-primary/30 rounded-lg bg-gradient-to-b from-background/20 to-transparent"
     />
   );
 }

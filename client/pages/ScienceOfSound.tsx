@@ -29,7 +29,7 @@ export default function ScienceOfSound() {
   const [frequency, setFrequency] = useState(240);
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-slate-950 via-purple-950 to-slate-950 pt-16">
+    <div className="min-h-screen w-full bg-gradient-to-b from-background via-card to-background pt-16">
       <Navigation />
 
       {/* Header Section */}
@@ -78,10 +78,10 @@ export default function ScienceOfSound() {
                     max={480}
                     label="Frequency Slider"
                   />
-                  <div className="pt-4 border-t border-purple-500/30">
+                  <div className="pt-4 border-t border-primary/30">
                     <div className="flex justify-between items-center">
                       <span className="text-gray-400">Current Note:</span>
-                      <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
+                      <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-muted-foreground to-primary">
                         {getNoteLabel(frequency)}
                       </span>
                     </div>
@@ -101,8 +101,8 @@ export default function ScienceOfSound() {
                   onClick={() => setFrequency(freq)}
                   className={`p-3 rounded-lg font-semibold transition-all duration-300 ${
                     frequency === freq
-                      ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg shadow-purple-500/50'
-                      : 'bg-purple-900/40 border border-purple-500/30 text-gray-300 hover:border-purple-500/60'
+                      ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/50'
+                      : 'bg-card/40 border border-primary/30 text-gray-300 hover:border-primary/60'
                   }`}
                 >
                   <div className="text-sm">{noteMapping[freq]}</div>

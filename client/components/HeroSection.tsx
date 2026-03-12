@@ -9,8 +9,8 @@ export default function HeroSection({ onExplore }: HeroSectionProps) {
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-4">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-600/20 rounded-full blur-3xl animate-pulse-glow"></div>
-        <div className="absolute bottom-20 right-10 w-72 h-72 bg-blue-600/20 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse-glow"></div>
+        <div className="absolute bottom-20 right-10 w-72 h-72 bg-muted-foreground/20 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1s' }}></div>
       </div>
 
       {/* Content */}
@@ -25,7 +25,7 @@ export default function HeroSection({ onExplore }: HeroSectionProps) {
                 stroke="currentColor"
                 strokeWidth="2"
                 fill="none"
-                className="text-purple-400 animate-wave"
+                className="text-primary animate-wave"
               />
             ))}
           </svg>

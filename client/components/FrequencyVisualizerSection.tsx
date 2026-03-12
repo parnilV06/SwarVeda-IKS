@@ -38,7 +38,7 @@ export default function FrequencyVisualizerSection() {
   };
 
   return (
-    <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-transparent to-purple-900/10">
+    <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-transparent to-card/10">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -54,8 +54,8 @@ export default function FrequencyVisualizerSection() {
             <div className="space-y-6">
               <div>
                 <h3 className="text-white font-semibold mb-2">Selected Note</h3>
-                <div className="text-center p-6 bg-gradient-to-r from-purple-900/40 to-blue-900/40 rounded-lg border border-purple-500/30">
-                  <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 mb-2">
+                <div className="text-center p-6 bg-gradient-to-r from-background/40 to-background/40 rounded-lg border border-primary/30">
+                  <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-muted-foreground to-primary mb-2">
                     {selectedNote.label}
                   </div>
                   <div className="text-xl text-gray-300">
@@ -71,8 +71,8 @@ export default function FrequencyVisualizerSection() {
                     onClick={() => playNote(note)}
                     className={`p-4 rounded-lg font-bold transition-all duration-300 ${
                       selectedNote.label === note.label
-                        ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg shadow-purple-500/50'
-                        : 'bg-purple-900/40 border border-purple-500/30 text-gray-300 hover:border-purple-500/60'
+                        ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/50'
+                        : 'bg-card/40 border border-primary/30 text-gray-300 hover:border-primary/60'
                     }`}
                   >
                     <div className="text-xl">{note.label}</div>

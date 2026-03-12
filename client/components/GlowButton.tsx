@@ -17,8 +17,8 @@ export default function GlowButton({
   variant = 'primary',
 }: GlowButtonProps) {
   const variantClasses = {
-    primary: 'glow-button',
-    secondary: 'bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white shadow-lg shadow-blue-500/50 hover:shadow-blue-500/75',
+    primary: 'bg-primary hover:bg-primary/90 text-[hsl(15,45%,15.7%)] shadow-lg shadow-primary/20 hover:shadow-primary/40',
+    secondary: 'bg-card border border-primary/20 hover:bg-card/80 text-primary shadow-lg shadow-primary/10 hover:shadow-primary/20',
   };
 
   return (

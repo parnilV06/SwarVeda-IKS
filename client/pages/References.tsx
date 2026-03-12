@@ -69,7 +69,7 @@ const references: Reference[] = [
 
 export default function References() {
   return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-slate-950 via-purple-950 to-slate-950 pt-16">
+    <div className="min-h-screen w-full bg-gradient-to-b from-background via-card to-background pt-16">
       <Navigation />
 
       {/* Header Section */}
@@ -91,7 +91,7 @@ export default function References() {
                 <ul className="space-y-3">
                   {section.items.map((item, itemIdx) => (
                     <li key={itemIdx} className="flex items-start gap-3">
-                      <span className="text-purple-400 font-bold text-lg mt-0.5">•</span>
+                      <span className="text-primary font-bold text-lg mt-0.5">•</span>
                       <span className="text-gray-300">{item}</span>
                     </li>
                   ))}
@@ -188,21 +188,21 @@ export default function References() {
           {/* Suggested Learning Path */}
           <SectionCard title="Suggested Learning Path" className="mt-8">
             <div className="space-y-4">
-              <div className="p-4 bg-purple-900/30 rounded-lg border border-purple-500/30">
+              <div className="p-4 bg-card/30 rounded-lg border border-primary/30">
                 <h4 className="text-white font-semibold mb-2">Beginner Level</h4>
                 <p className="text-gray-300 text-sm">
                   Start with "The Raga Guide" and listen to foundational ragas. Explore basic concepts of sound and vibration. Understand the structure of Indian classical music.
                 </p>
               </div>
 
-              <div className="p-4 bg-purple-900/30 rounded-lg border border-purple-500/30">
+              <div className="p-4 bg-card/30 rounded-lg border border-primary/30">
                 <h4 className="text-white font-semibold mb-2">Intermediate Level</h4>
                 <p className="text-gray-300 text-sm">
                   Study Sangit Ratnakara and explore different gharanas. Learn about taal systems. Research the philosophical foundations in the Vedas and Upanishads.
                 </p>
               </div>
 
-              <div className="p-4 bg-purple-900/30 rounded-lg border border-purple-500/30">
+              <div className="p-4 bg-card/30 rounded-lg border border-primary/30">
                 <h4 className="text-white font-semibold mb-2">Advanced Level</h4>
                 <p className="text-gray-300 text-sm">
                   Engage with Natya Shastra. Study acoustics and psychoacoustics research. Explore connections between sound, consciousness, and healing. Consider spiritual applications through Nada Yoga.
@@ -212,7 +212,7 @@ export default function References() {
           </SectionCard>
 
           {/* Final Note */}
-          <SectionCard title="A Note on Learning" className="mt-8 bg-gradient-to-br from-purple-900/20 to-blue-900/20">
+          <SectionCard title="A Note on Learning" className="mt-8 bg-gradient-to-br from-background/20 to-background/20">
             <div className="space-y-4 text-gray-300">
               <p>
                 Indian classical music is a vast and deep tradition that cannot be fully understood through books and articles alone. The best way to learn is through:

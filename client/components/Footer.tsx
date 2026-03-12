@@ -12,12 +12,12 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-black/50 border-t border-purple-500/20">
+    <footer className="bg-black/50 border-t border-primary/20">
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
         <div className="grid md:grid-cols-2 gap-12 mb-8">
           {/* About Section */}
           <div>
-            <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400 mb-4">
+            <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-muted-foreground mb-4">
               SwarVeda
             </h3>
             <p className="text-gray-400">
@@ -43,7 +43,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Footer */}
-        <div className="border-t border-purple-500/20 pt-8 text-center text-gray-400">
+        <div className="border-t border-primary/20 pt-8 text-center text-gray-400">
           <p className="mb-2">
             Exploring how ragas, rhythm, and sound vibration connect music with science
           </p>

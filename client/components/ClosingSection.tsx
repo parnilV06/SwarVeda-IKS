@@ -44,7 +44,7 @@ export default function ClosingSection() {
       </section>
 
       {/* Conclusion */}
-      <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-transparent to-purple-900/20">
+      <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-transparent to-card/20">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">

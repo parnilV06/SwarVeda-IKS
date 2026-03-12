@@ -56,7 +56,7 @@ export default function RagaExplorerSection() {
   };
 
   return (
-    <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-transparent to-blue-900/10">
+    <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-transparent to-background/10">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -70,7 +70,7 @@ export default function RagaExplorerSection() {
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           {ragas.map((raga, index) => (
             <SectionCard key={index} className="flex flex-col">
-              <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400 mb-3">
+              <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-muted-foreground mb-3">
                 {raga.name}
               </h3>
               
@@ -102,7 +102,7 @@ export default function RagaExplorerSection() {
               <h4 className="text-white font-semibold mb-2">Arohana (Ascending Scale)</h4>
               <p className="text-gray-300">The ascending pattern of notes in a raga, showing the progression from lower to higher notes.</p>
             </div>
-            <div className="border-t border-purple-500/30 pt-4">
+            <div className="border-t border-primary/30 pt-4">
               <h4 className="text-white font-semibold mb-2">Avarohana (Descending Scale)</h4>
               <p className="text-gray-300">The descending pattern of notes in a raga, returning from higher to lower notes, often different from the ascending pattern.</p>
             </div>

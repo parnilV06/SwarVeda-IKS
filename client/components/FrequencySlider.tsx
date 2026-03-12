@@ -29,11 +29,11 @@ export default function FrequencySlider({
           max={max}
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="flex-1 h-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg appearance-none cursor-pointer accent-purple-500"
+          className="flex-1 h-2 bg-gradient-to-r from-primary to-accent rounded-lg appearance-none cursor-pointer accent-purple-500"
         />
         {showValue && (
           <div className="text-right min-w-24">
-            <div className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
+            <div className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-muted-foreground">
               {value} Hz
             </div>
           </div>

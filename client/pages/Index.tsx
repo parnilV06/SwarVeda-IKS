@@ -15,7 +15,7 @@ export default function Index() {
   };
 
   return (
-    <div className="w-full overflow-x-hidden bg-gradient-to-b from-slate-950 via-purple-950 to-slate-950">
+    <div className="w-full overflow-x-hidden bg-gradient-to-b from-background via-card to-background">
       {/* Hero Section */}
       <HeroSection onExplore={handleExplore} />
 
@@ -40,7 +40,7 @@ export default function Index() {
       <ClosingSection />
 
       {/* Footer */}
-      <footer className="py-12 px-4 md:px-8 bg-black/30 border-t border-purple-500/20">
+      <footer className="py-12 px-4 md:px-8 bg-black/30 border-t border-primary/20">
         <div className="max-w-6xl mx-auto text-center text-gray-400">
           <p className="mb-2">
             SwarVeda – Exploring Raga, Rhythm and Sound

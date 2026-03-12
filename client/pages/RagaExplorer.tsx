@@ -70,7 +70,7 @@ export default function RagaExplorer() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-slate-950 via-purple-950 to-slate-950 pt-16">
+    <div className="min-h-screen w-full bg-gradient-to-b from-background via-card to-background pt-16">
       <Navigation />
 
       {/* Header Section */}
@@ -89,7 +89,7 @@ export default function RagaExplorer() {
           <div className="grid md:grid-cols-2 gap-6 mb-16">
             {ragas.map((raga, index) => (
               <SectionCard key={index} className="flex flex-col">
-                <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400 mb-4">
+                <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-muted-foreground mb-4">
                   {raga.name}
                 </h3>
                 
@@ -97,7 +97,7 @@ export default function RagaExplorer() {
                   {raga.description}
                 </p>
 
-                <div className="space-y-3 mb-6 border-t border-purple-500/30 pt-4">
+                <div className="space-y-3 mb-6 border-t border-primary/30 pt-4">
                   <div>
                     <span className="text-gray-400 text-sm">Mood:</span>
                     <p className="text-white font-semibold">{raga.mood}</p>
@@ -128,7 +128,7 @@ export default function RagaExplorer() {
                   The ascending pattern of notes in a raga, showing the progression from lower to higher notes. This is the sequence used when ascending in pitch. For example, in Raga Yaman, the ascending scale is Sa Re Ga Ma Pa Dha Ni Sa.
                 </p>
               </div>
-              <div className="border-t border-purple-500/30 pt-6">
+              <div className="border-t border-primary/30 pt-6">
                 <h4 className="text-white font-semibold mb-3 text-lg">Avarohana (Descending Scale)</h4>
                 <p className="text-gray-300">
                   The descending pattern of notes in a raga, returning from higher to lower notes. This is often different from the ascending pattern, adding complexity and uniqueness to each raga's character.

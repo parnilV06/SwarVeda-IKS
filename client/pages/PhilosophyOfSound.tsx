@@ -4,7 +4,7 @@ import SectionCard from '@/components/SectionCard';
 
 export default function PhilosophyOfSound() {
   return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-slate-950 via-purple-950 to-slate-950 pt-16">
+    <div className="min-h-screen w-full bg-gradient-to-b from-background via-card to-background pt-16">
       <Navigation />
 
       {/* Header Section */}
@@ -162,21 +162,21 @@ export default function PhilosophyOfSound() {
           {/* Key Quotes/Concepts */}
           <SectionCard title="Key Philosophical Concepts" className="">
             <div className="space-y-4">
-              <div className="p-4 bg-purple-900/30 rounded-lg border border-purple-500/30">
+              <div className="p-4 bg-card/30 rounded-lg border border-primary/30">
                 <p className="text-white font-semibold mb-2">From the Vedas:</p>
                 <p className="text-gray-300 text-sm italic">
                   "In the beginning was Nada (Sound). From Nada came all creation. The universe moves to the rhythm of cosmic sound."
                 </p>
               </div>
 
-              <div className="p-4 bg-purple-900/30 rounded-lg border border-purple-500/30">
+              <div className="p-4 bg-card/30 rounded-lg border border-primary/30">
                 <p className="text-white font-semibold mb-2">Principle of Resonance:</p>
                 <p className="text-gray-300 text-sm italic">
                   "Just as physical objects vibrate at their natural frequency, consciousness too vibrates at different frequencies. Music allows us to attune our vibration with the cosmic vibration."
                 </p>
               </div>
 
-              <div className="p-4 bg-purple-900/30 rounded-lg border border-purple-500/30">
+              <div className="p-4 bg-card/30 rounded-lg border border-primary/30">
                 <p className="text-white font-semibold mb-2">The Path of Music:</p>
                 <p className="text-gray-300 text-sm italic">
                   "Music is not entertainment; it is a science, a medicine, and a path to self-realization. Through music, we can experience the unity of all existence."

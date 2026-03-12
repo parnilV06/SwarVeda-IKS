@@ -20,7 +20,7 @@ export default function IntroductionSection() {
   ];
 
   return (
-    <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-transparent to-purple-900/10">
+    <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-transparent to-card/10">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">

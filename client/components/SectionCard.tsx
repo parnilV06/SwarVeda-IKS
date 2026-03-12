@@ -22,7 +22,7 @@ export default function SectionCard({
     <div
       className={cn(
         'glow-box rounded-xl p-6 backdrop-blur-sm transition-all duration-300',
-        hoverable && 'hover:shadow-lg hover:shadow-purple-500/20 hover:border-purple-500/40',
+        hoverable && 'hover:shadow-lg hover:shadow-primary/20 hover:border-primary/40',
         className
       )}
     >

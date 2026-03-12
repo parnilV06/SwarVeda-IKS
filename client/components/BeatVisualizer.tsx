@@ -36,8 +36,8 @@ export default function BeatVisualizer({
             className={cn(
               'aspect-square rounded-lg font-bold text-white flex items-center justify-center transition-all duration-300 cursor-default',
               currentBeat === index && isPlaying
-                ? 'bg-gradient-to-br from-purple-500 to-pink-500 scale-110 shadow-lg shadow-purple-500/50'
-                : 'bg-purple-900/40 border border-purple-500/30'
+                ? 'bg-gradient-to-br from-purple-500 to-pink-500 scale-110 shadow-lg shadow-primary/50'
+                : 'bg-card/40 border border-primary/30'
             )}
           >
             <div className="text-center">

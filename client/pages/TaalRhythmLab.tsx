@@ -15,7 +15,7 @@ export default function TaalRhythmLab() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-slate-950 via-purple-950 to-slate-950 pt-16">
+    <div className="min-h-screen w-full bg-gradient-to-b from-background via-card to-background pt-16">
       <Navigation />
 
       {/* Header Section */}
@@ -67,7 +67,7 @@ export default function TaalRhythmLab() {
                 </GlowButton>
               </div>
 
-              <div className="pt-6 border-t border-purple-500/30">
+              <div className="pt-6 border-t border-primary/30">
                 <h4 className="text-white font-semibold mb-3">Beat Patterns</h4>
                 <p className="text-gray-300 text-sm mb-4">
                   The syllables (bols) used in Teentaal are: Dha Dhin Dhin Dha (first cycle), Dha Dhin Dhin Dha (second cycle), Na Tin Tin Ta (third cycle), Ta Dhin Dhin Dha (fourth cycle).
