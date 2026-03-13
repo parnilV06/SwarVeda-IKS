@@ -17,9 +17,12 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 gap-12 mb-8">
           {/* About Section */}
           <div>
-            <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-muted-foreground mb-4">
-              SwarVeda
-            </h3>
+            <Link to="/" className="flex items-center gap-2 mb-4">
+              <img src="/swarveda-main-logo.png" alt="SwarVeda Logo" className="h-10 w-auto object-contain" />
+              <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-muted-foreground">
+                SwarVeda
+              </h3>
+            </Link>
             <p className="text-gray-400">
               An educational journey exploring the scientific and mathematical principles behind Indian classical music, connecting ancient knowledge traditions with modern science.
             </p>

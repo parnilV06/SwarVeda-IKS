@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { ReactNode } from 'react';
 import SectionCard from '@/components/SectionCard';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -6,7 +7,7 @@ import Footer from '@/components/Footer';
 interface FeatureCard {
   title: string;
   description: string;
-  icon: string;
+  icon: ReactNode;
   href: string;
 }
 
@@ -14,37 +15,37 @@ const features: FeatureCard[] = [
   {
     title: 'Science of Sound',
     description: 'Explore how vibrations create sound waves and how frequency determines pitch in music.',
-    icon: '🌊',
+    icon: <img src="/science-of-sound.png" alt="Science of Sound" className="w-10 h-10 object-contain" />,
     href: '/science-of-sound',
   },
   {
     title: 'Raga Explorer',
     description: 'Discover the melodic frameworks of Indian classical music and the emotions they evoke.',
-    icon: '🎵',
+    icon: <img src="/raga-explorer.png" alt="Raga Explorer" className="w-10 h-10 object-contain" />,
     href: '/raga-explorer',
   },
   {
     title: 'Rhythm Lab',
     description: 'Understand the mathematical cycles (taal) that form the rhythmic foundation of music.',
-    icon: '⏱️',
+    icon: <img src="/rhythm-lab.png" alt="Rhythm Lab" className="w-10 h-10 object-contain" />,
     href: '/taal-rhythm-lab',
   },
   {
     title: 'Frequency Visualizer',
     description: 'Interact with musical notes and visualize the waveforms that create each frequency.',
-    icon: '📊',
+    icon: <img src="/frequency-visualizer.png" alt="Frequency Visualizer" className="w-10 h-10 object-contain" />,
     href: '/frequency-visualizer',
   },
   {
     title: 'Philosophy of Sound',
     description: 'Explore the concept of Nada Brahma and the spiritual dimensions of sound vibration.',
-    icon: '✨',
+    icon: <img src="/philosophy.png" alt="Philosophy of Sound" className="w-10 h-10 object-contain" />,
     href: '/philosophy-of-sound',
   },
   {
     title: 'References',
     description: 'Access curated resources, academic materials, and further learning on Indian classical music.',
-    icon: '📚',
+    icon: <img src="/references.png" alt="References" className="w-10 h-10 object-contain" />,
     href: '/references',
   },
 ];
@@ -128,19 +129,19 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <SectionCard title="Music and Sound" icon="🌊">
+            <SectionCard title="Music and Sound" icon={<img src="/science-of-sound.png" alt="Music and Sound" className="w-10 h-10 object-contain" />}>
               <p className="text-gray-300">
                 Music is created through vibrations that travel as sound waves, revealing the physical nature of what we hear.
               </p>
             </SectionCard>
 
-            <SectionCard title="Ragas and Structure" icon="🎵">
+            <SectionCard title="Ragas and Structure" icon={<img src="/raga-explorer.png" alt="Ragas and Structure" className="w-10 h-10 object-contain" />}>
               <p className="text-gray-300">
                 Ragas organize musical notes into patterns that create specific emotional and aesthetic experiences.
               </p>
             </SectionCard>
 
-            <SectionCard title="Rhythm and Mathematics" icon="🔢">
+            <SectionCard title="Rhythm and Mathematics" icon={<img src="/maths.png" alt="Rhythm and Mathematics" className="w-10 h-10 object-contain" />}>
               <p className="text-gray-300">
                 Rhythm cycles (taal) follow structured mathematical patterns with precise mathematical timing principles.
               </p>
