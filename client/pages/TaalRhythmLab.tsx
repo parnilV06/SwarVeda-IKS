@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import SectionCard from '@/components/SectionCard';
@@ -13,6 +13,28 @@ export default function TaalRhythmLab() {
   const handlePlayRhythm = () => {
     setIsPlaying(!isPlaying);
   };
+
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    let beatIndex = 0;
+    const playSound = (index: number) => {
+      const beatName = teentaalBeats[index];
+      // Play sound from the sounds folder
+      const audio = new Audio(`/sounds/${beatName}.wav`);
+      audio.play().catch(e => console.log("Audio play failed:", e));
+    };
+
+    playSound(0);
+
+    const interval = setInterval(() => {
+      beatIndex = (beatIndex + 1) % teentaalBeats.length;
+      playSound(beatIndex);
+    }, 300);
+
+    return () => clearInterval(interval);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPlaying]);
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-background via-card to-background pt-16">
