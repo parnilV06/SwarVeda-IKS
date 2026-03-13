@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, ReactNode } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import SectionCard from '@/components/SectionCard';
@@ -6,41 +6,58 @@ import WaveformVisualizer from '@/components/WaveformVisualizer';
 
 interface Note {
   label: string;
-  frequency: number;
+  ratio: number;
   color: string;
   swaraName: string;
 }
 
+const BASE_SA = 240;
+
 const notes: Note[] = [
-  { label: 'Sa', frequency: 240, color: 'rgb(139, 92, 246)', swaraName: 'Shadja' },
-  { label: 'Re', frequency: 270, color: 'rgb(168, 85, 247)', swaraName: 'Rishab' },
-  { label: 'Ga', frequency: 300, color: 'rgb(192, 132, 250)', swaraName: 'Gandhar' },
-  { label: 'Ma', frequency: 320, color: 'rgb(147, 112, 219)', swaraName: 'Madhyam' },
-  { label: 'Pa', frequency: 360, color: 'rgb(139, 92, 246)', swaraName: 'Pancham' },
-  { label: 'Dha', frequency: 400, color: 'rgb(168, 85, 247)', swaraName: 'Dhaivat' },
-  { label: 'Ni', frequency: 450, color: 'rgb(192, 132, 250)', swaraName: 'Nishad' },
-  { label: 'Sa (H)', frequency: 480, color: 'rgb(139, 92, 246)', swaraName: 'Shadja (High)' },
+  { label: 'Sa', ratio: 1/1, color: 'rgb(139, 92, 246)', swaraName: 'Shadja' },
+  { label: 'Re', ratio: 9/8, color: 'rgb(168, 85, 247)', swaraName: 'Rishab' },
+  { label: 'Ga', ratio: 5/4, color: 'rgb(192, 132, 250)', swaraName: 'Gandhar' },
+  { label: 'Ma', ratio: 4/3, color: 'rgb(147, 112, 219)', swaraName: 'Madhyam' },
+  { label: 'Pa', ratio: 3/2, color: 'rgb(139, 92, 246)', swaraName: 'Pancham' },
+  { label: 'Dha', ratio: 5/3, color: 'rgb(168, 85, 247)', swaraName: 'Dhaivat' },
+  { label: 'Ni', ratio: 15/8, color: 'rgb(192, 132, 250)', swaraName: 'Nishad' },
+  { label: 'Sa (H)', ratio: 2/1, color: 'rgb(139, 92, 246)', swaraName: 'Shadja (High)' },
 ];
+
+let audioCtx: AudioContext | null = null;
 
 export default function FrequencyVisualizer() {
   const [selectedNote, setSelectedNote] = useState<Note>(notes[0]);
 
   const playNote = (note: Note) => {
     setSelectedNote(note);
-    // Create a simple tone using Web Audio API
-    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-    const oscillator = audioContext.createOscillator();
-    const gainNode = audioContext.createGain();
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+    }
+    
+    // Resume audio context if it was suspended (browser policy)
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    
+    oscillator.type = 'sine';
     
     oscillator.connect(gainNode);
-    gainNode.connect(audioContext.destination);
+    gainNode.connect(audioCtx.destination);
     
-    oscillator.frequency.value = note.frequency;
-    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+    const freq = BASE_SA * note.ratio;
+    oscillator.frequency.value = freq;
     
-    oscillator.start(audioContext.currentTime);
-    oscillator.stop(audioContext.currentTime + 0.5);
+    const currentTime = audioCtx.currentTime;
+    gainNode.gain.setValueAtTime(0, currentTime);
+    gainNode.gain.linearRampToValueAtTime(0.15, currentTime + 0.05);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, currentTime + 0.6);
+    
+    oscillator.start(currentTime);
+    oscillator.stop(currentTime + 0.6);
   };
 
   return (
@@ -72,7 +89,7 @@ export default function FrequencyVisualizer() {
                       {selectedNote.label}
                     </div>
                     <div className="text-xl text-gray-300 mb-2">
-                      {selectedNote.frequency} Hz
+                      {Math.round(BASE_SA * selectedNote.ratio)} Hz
                     </div>
                     <div className="text-sm text-gray-400">
                       {selectedNote.swaraName}
@@ -95,7 +112,7 @@ export default function FrequencyVisualizer() {
                         }`}
                       >
                         <div className="text-lg">{note.label}</div>
-                        <div className="text-xs text-gray-400">{note.frequency} Hz</div>
+                        <div className="text-xs text-gray-400">{Math.round(BASE_SA * note.ratio)} Hz</div>
                       </button>
                     ))}
                   </div>
@@ -109,7 +126,7 @@ export default function FrequencyVisualizer() {
                 This animation shows the sound wave pattern for the selected note. Higher frequencies create more waves per second, resulting in a higher pitch.
               </p>
               <WaveformVisualizer
-                frequency={selectedNote.frequency}
+                frequency={BASE_SA * selectedNote.ratio}
                 color={selectedNote.color}
                 height={200}
               />
@@ -118,7 +135,7 @@ export default function FrequencyVisualizer() {
 
           {/* Information Sections */}
           <div className="grid md:grid-cols-2 gap-6 mb-16">
-            <SectionCard title="Understanding Frequencies" icon="📊">
+            <SectionCard title="Understanding Frequencies" icon={<img src="/chart.png" alt="Understanding Frequencies" className="w-8 h-8 object-contain" />}>
               <div className="space-y-4 text-gray-300">
                 <p>
                   Frequency determines the pitch of a note. It's measured in Hertz (Hz), representing the number of vibrations per second.
@@ -130,7 +147,7 @@ export default function FrequencyVisualizer() {
               </div>
             </SectionCard>
 
-            <SectionCard title="The Seven Swaras" icon="🎵">
+            <SectionCard title="The Seven Swaras" icon={<img src="/swars.png" alt="The Seven Swaras" className="w-8 h-8 object-contain" />}>
               <div className="space-y-2 text-gray-300 text-sm">
                 <p><strong>Sa (Shadja)</strong> - The root note, foundation of all music</p>
                 <p><strong>Re (Rishab)</strong> - Second note, creates intervals</p>
@@ -139,13 +156,13 @@ export default function FrequencyVisualizer() {
               </div>
             </SectionCard>
 
-            <SectionCard title="Octaves and Registers" icon="🎼">
+            <SectionCard title="Octaves and Registers" icon={<img src="/octave.png" alt="Octaves and Registers" className="w-8 h-8 object-contain" />}>
               <p className="text-gray-300">
                 The same note can be played at different octaves (higher or lower). Notice how "Sa (H)" at 480 Hz has the same label as "Sa" at 240 Hz, but at a higher pitch due to doubled frequency.
               </p>
             </SectionCard>
 
-            <SectionCard title="Harmonics and Timbre" icon="✨">
+            <SectionCard title="Harmonics and Timbre" icon={<img src="/harmonics-stars.png" alt="Harmonics and Timbre" className="w-8 h-8 object-contain" />}>
               <p className="text-gray-300">
                 Every musical instrument produces not just the fundamental frequency but also harmonics - additional frequencies that create the unique timbre or "color" of the instrument.
               </p>
@@ -165,16 +182,19 @@ export default function FrequencyVisualizer() {
                   </tr>
                 </thead>
                 <tbody>
-                  {notes.map((note) => (
-                    <tr key={note.label} className="border-b border-primary/20 hover:bg-card/20 transition-colors">
-                      <td className="py-3 px-4 font-semibold text-white">{note.label}</td>
-                      <td className="py-3 px-4">{note.swaraName}</td>
-                      <td className="py-3 px-4">{note.frequency} Hz</td>
-                      <td className="py-3 px-4 text-xs text-gray-400">
-                        {note.frequency < 300 ? 'Lower range' : note.frequency < 400 ? 'Middle range' : 'Higher range'}
-                      </td>
-                    </tr>
-                  ))}
+                  {notes.map((note) => {
+                    const freq = BASE_SA * note.ratio;
+                    return (
+                      <tr key={note.label} className="border-b border-primary/20 hover:bg-card/20 transition-colors">
+                        <td className="py-3 px-4 font-semibold text-white">{note.label}</td>
+                        <td className="py-3 px-4">{note.swaraName}</td>
+                        <td className="py-3 px-4">{Math.round(freq)} Hz</td>
+                        <td className="py-3 px-4 text-xs text-gray-400">
+                          {freq < 300 ? 'Lower range' : freq < 400 ? 'Middle range' : 'Higher range'}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
