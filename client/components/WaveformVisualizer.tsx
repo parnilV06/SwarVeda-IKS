@@ -17,7 +17,6 @@ export default function WaveformVisualizer({
 }: WaveformVisualizerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
-  const offsetRef = useRef(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -26,11 +25,23 @@ export default function WaveformVisualizer({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const width = canvas.width;
-    const centerY = canvas.height / 2;
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        if (entry.target === canvas) {
+          const { width } = entry.contentRect;
+          // Set internal canvas resolution to match its display size exactly
+          canvas.width = width;
+        }
+      }
+    });
+    
+    // Initial size setting
+    canvas.width = canvas.parentElement?.clientWidth || 400;
+    resizeObserver.observe(canvas);
 
     const animate = () => {
-      ctx.clearRect(0, 0, width, canvas.height);
+      const centerY = canvas.height / 2;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.strokeStyle = color;
       ctx.lineWidth = 2;
       ctx.beginPath();
@@ -41,7 +52,7 @@ export default function WaveformVisualizer({
         const dataArray = new Uint8Array(bufferLength);
         analyser.getByteTimeDomainData(dataArray);
 
-        const sliceWidth = width * 1.0 / bufferLength;
+        const sliceWidth = canvas.width * 1.0 / bufferLength;
         let x = 0;
 
         for (let i = 0; i < bufferLength; i++) {
@@ -57,23 +68,21 @@ export default function WaveformVisualizer({
           x += sliceWidth;
         }
       } else {
-        // Fallback: draw simulated sine wave based on frequency and amplitude props
-        const wavelength = 2000 / frequency; // adjust scale for visuals
-        const speed = frequency / 100;
+        const timeWindow = 0.05; // Show 50ms of audio
+        const timeElapsed = performance.now() / 1000;
 
-        for (let x = 0; x < width; x++) {
-          // Adjust amplitude visual multiplier based on prop (0.0 to 1.0 range typical for audio, we map it back)
-          // Default old param was ~40, now we treat amplitude as 0-1 if connected to volume
-          const visualAmp = Math.min(centerY * 0.9, amplitude * 100); 
+        for (let x = 0; x < canvas.width; x++) {
+          const t = (x / canvas.width) * timeWindow;
+          // y = A * sin(2πf * (t - time))
+          const phase = 2 * Math.PI * frequency * (t - timeElapsed);
+          const y = centerY + Math.sin(phase) * amplitude;
           
-          const y = centerY + Math.sin((x + offsetRef.current) / wavelength) * visualAmp;
           if (x === 0) {
             ctx.moveTo(x, y);
           } else {
             ctx.lineTo(x, y);
           }
         }
-        offsetRef.current += speed;
       }
 
       ctx.stroke();
@@ -83,6 +92,7 @@ export default function WaveformVisualizer({
     animate();
 
     return () => {
+      resizeObserver.disconnect();
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
@@ -92,9 +102,8 @@ export default function WaveformVisualizer({
   return (
     <canvas
       ref={canvasRef}
-      width={400}
       height={height}
-      className="w-full border border-primary/30 rounded-lg bg-gradient-to-b from-background/20 to-transparent"
+      className="w-full border border-primary/30 rounded-lg bg-gradient-to-b from-background/20 to-transparent block"
     />
   );
 }
