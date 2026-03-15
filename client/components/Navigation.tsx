@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   const navLinks = [
     { label: 'Home', href: '/' },
@@ -21,22 +22,30 @@ export default function Navigation() {
           {/* Logo */}
           <Link
             to="/"
-            className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-muted-foreground"
+            className="flex items-center gap-2 text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-muted-foreground"
           >
-            🎵 SwarVeda
+            <img src="/swarveda-main-logo.png" alt="SwarVeda Logo" className="h-8 w-auto object-contain" />
+            SwarVeda
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className="text-gray-300 hover:text-white transition-colors duration-300 text-sm font-medium"
-              >
-                {link.label}
-              </Link>
-            ))}
+          <div className="hidden md:flex items-center gap-8 h-full">
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className={`text-sm font-medium transition-colors duration-300 pb-1 border-b-2 ${
+                    isActive 
+                      ? 'text-primary border-primary' 
+                      : 'text-gray-300 border-transparent hover:text-white hover:border-white/20'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Mobile Menu Button */}
@@ -72,16 +81,23 @@ export default function Navigation() {
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <div className="md:hidden pb-4 space-y-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-card/50 rounded-lg transition-colors duration-300 text-sm"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className={`block px-4 py-2 rounded-lg transition-colors duration-300 text-sm ${
+                    isActive
+                      ? 'text-primary bg-primary/10 border-l-2 border-primary font-medium'
+                      : 'text-gray-300 hover:text-white hover:bg-card/50'
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
         )}
       </div>
