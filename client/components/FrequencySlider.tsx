@@ -3,17 +3,21 @@ interface FrequencySliderProps {
   onChange: (value: number) => void;
   min?: number;
   max?: number;
+  step?: number;
   label?: string;
   showValue?: boolean;
+  onMouseUp?: () => void;
 }
 
 export default function FrequencySlider({
   value,
   onChange,
   min = 100,
-  max = 500,
+  max = 2000,
+  step = 1,
   label,
   showValue = true,
+  onMouseUp,
 }: FrequencySliderProps) {
   return (
     <div className="w-full">
@@ -27,8 +31,11 @@ export default function FrequencySlider({
           type="range"
           min={min}
           max={max}
+          step={step}
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
+          onMouseUp={onMouseUp}
+          onTouchEnd={onMouseUp}
           className="flex-1 h-2 bg-gradient-to-r from-primary to-accent rounded-lg appearance-none cursor-pointer accent-purple-500"
         />
         {showValue && (
